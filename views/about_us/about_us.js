@@ -4,10 +4,20 @@
         .controller('aboutUsController',['$rootScope',"$scope",'CustomService',aboutUsController]);
 
     function aboutUsController($rootScope,$scope,CustomService){
-        var self = this;
+        var vm = this;
+
+        init();
+        activate();
 
 
-        this.aboutUsData = CustomService.userData.aboutUsData;
+
+        function init(){
+
+        }
+
+        function activate(){
+
+        }
 
     }
 
