@@ -1,0 +1,108 @@
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Opening Times</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row" ng-repeat="day in openTime.openTimeArray track by $index" style="position: relative;">
+                    <div class="col-sm-5" style="top: 10px;margin-bottom: 25px;position: relative;">
+                        <div style="margin-bottom: 5px;">
+                            <input ng-model="day.break" type="checkbox"/>
+                            <span>add break time</span>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle">{{day.startDay.day ||  'select day'}}<span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="choice in openTime.daysArray">
+                                    <div ng-click="updateDay(day,'startDay',choice)" style="padding: 0px 10px;cursor: pointer;">
+                                        {{ choice }}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <spam> - </spam>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle">{{day.endDay.day || 'select day (optional)'}}<span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="choice in openTime.daysArray">
+                                    <div ng-click="updateDay(day,'endDay',choice)" style="padding: 0px 10px;cursor: pointer;">
+                                        {{ choice }}
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div style="display: inline-block;">
+                            <div style="display: inline-block;">
+                                <timepicker ng-model="day.startDay.open" show-meridian='false'/>
+                            </div>
+                            <span style="bottom: 40px;position: relative;text-align: center;">-</span>
+                            <div style="display: inline-block;">
+                                <timepicker ng-model="day.startDay.close" show-meridian='false'/>
+                            </div>
+                        </div>
+                        <div ng-show="day.break" style="display: inline-block;">
+                            <span style="bottom: 40px;position: relative;"> ----- </span>
+                            <div style="display: inline-block;">
+                                <timepicker ng-model="day.endDay.open" show-meridian='false'/>
+                            </div>
+                            <span style="bottom: 40px;position: relative;text-align: center;">-</span>
+                            <div style="display: inline-block;">
+                                <timepicker ng-model="day.endDay.close" show-meridian='false'/>
+                            </div>
+                        </div>
+                        <div ng-click="openTime.removeTime($index)"
+                             style="font-size: 25px;color: red;cursor: pointer;position: relative;right: -30px;bottom: 35px;z-index: 100;display: inline-block;">
+                            <i class="fa fa-minus-square"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div ng-click="openTime.addTime()"
+                     style="font-size: 25px;margin-left: 5px;color: #15DE15;cursor: pointer;">
+                    <i class="fa fa-plus-square"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div style="position: relative;">
+            <img src="img/iphone-cover.jpg" class="phone-container" alt=""/>
+            <div class="phone-data">
+                <div style="font-weight: bold;margin-bottom: 20px;text-align: center;">
+                    Opening Times:
+                </div>
+                <div ng-repeat="day in openTime.openTimeArray track by $index" style="margin-top: 15px;">
+                    <div>
+                        <span>
+                            {{day.startDay.day}}
+                        </span>
+                        <span ng-if="day.endDay.day">
+                           - {{day.endDay.day}}
+                        </span>
+                    </div>
+                    <div>
+                        <div ng-show="day.startDay.open">
+                            {{day.startDay.open | date: 'shortTime'}}-{{day.startDay.close | date: 'shortTime'}}
+                        </div>
+                         <div ng-if="day.break">
+                             {{day.endDay.open | date: 'shortTime'}}-{{day.endDay.close | date: 'shortTime'}}
+                        </div>
+                    </div>
+                </div>
+                {{day.startDay.close | date: 'shortTime'}}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+

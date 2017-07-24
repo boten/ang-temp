@@ -1,0 +1,13 @@
+.container {
+    background-color: #f1f1f1;
+}
+
+/* Add "click" styles because newer releases of AngularJS don't seem to add the HREF value. */
+a[ ng-click ] {
+    cursor: pointer ;
+    text-decoration: underline ;
+}
+
+img[ bn-lazy-src ] {
+    background-image: url( "http://bennadel.github.io/JavaScript-Demos/demos/lazy-src-angularjs/checkered.png");
+}
